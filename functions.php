@@ -162,6 +162,54 @@ function column_box( $atts , $content = null ) {
 
 add_shortcode( 'column-box', 'column_box' );
 
+// Change excerpt length
+function wpdocs_custom_excerpt_length( $length ) {
+    return 100;
+}
+
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+// Change excerpt read more text
+function custom_excerpt_more( $more ) {
+	return '...';
+}
+
+add_filter( 'excerpt_more', 'custom_excerpt_more' );
+
+
+// Display most recent post
+function recent_posts_shortcode( $atts , $content = null ) {
+
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'posts' => '5',
+		),
+		$atts,
+		'recent-posts'
+	);
+
+	// Query
+	$the_query = new WP_Query( array ( 'posts_per_page' => $atts['posts'] ) );
+	
+	// Posts
+	while ( $the_query->have_posts() ) :
+		$the_query->the_post();
+		$output .= '<div class="recent-posts-summary">';
+		$output .= '<h3><a href="' . get_the_permalink() . '">' . get_the_title() . ' on ' . get_the_time("F d, Y") . '</a></h3>' . get_the_excerpt();
+		$output .= '</div>';
+	endwhile;
+	
+	// Reset post data
+	wp_reset_postdata();
+	
+	// Return code
+	return $output;
+
+}
+
+add_shortcode( 'recent-posts', 'recent_posts_shortcode' );
+
 // Content layout with more than one column
 function twitter_sc( $atts , $content = null ) {
 

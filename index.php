@@ -52,7 +52,4 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-	if ( is_Home() && ! is_front_page() ) : 
-		get_sidebar();
-	endif;
 get_footer();

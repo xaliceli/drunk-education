@@ -103,7 +103,7 @@ dfn {
 
 h1 {
 	font-size: 2em;
-	margin: 0.67em 0;
+	margin: 0.67em 0 .5em 0;
 }
 
 mark {
@@ -497,6 +497,7 @@ textarea {
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
+/*
 a {
 	color: royalblue;
 }
@@ -519,6 +520,7 @@ a:hover,
 a:active {
 	outline: 0;
 }
+*/
 
 /*--------------------------------------------------------------
 ## Menus
@@ -923,7 +925,8 @@ main a:visited {
 }
 
 main a:hover,
-main a:active {
+main a:active,
+main a:focus {
 	color: #fdffff;
 	background: #ec3f30;
 }
@@ -950,6 +953,14 @@ p:empty {
 	margin: 0 !important;
 }
 
+h1,
+h2,
+h3 {
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	font-family: "Francois One", sans-serif;
+}
+
 #mc_embed_signup input[type="email"], #mc_embed_signup input[type="text"], 
 #mc_embed_signup input[type="email"]:focus, #mc_embed_signup input[type="text"]:focus  {
 	font-family: "Source Sans Pro", sans-serif;
@@ -963,11 +974,13 @@ p:empty {
 }
 
 #mc_embed_signup input[type="submit"] {
-	font-family: "Source Sans Pro", sans-serif;
-	border: 1px solid #111;
+	text-transform: uppercase;
+	font-family: "Francois One", sans-serif;
+	letter-spacing: 2px;
 	padding: .4rem;
 	background: #FDFFFF;
 	color: #111;
+	border: 0;
 	cursor: pointer;
 }
 
@@ -1115,7 +1128,6 @@ p:empty {
 
 }
 
-
 /*--------------------------------------------------------------
 ## Front page
 --------------------------------------------------------------*/
@@ -1129,6 +1141,11 @@ p:empty {
 	font-size: 1.5rem;
 	color: #ec3f30;	
 	text-align: center;
+}
+
+.home h3 {
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .home .border-page > p {
@@ -1155,14 +1172,12 @@ p:empty {
 #main #mc_embed_signup input[type="submit"] {
 	width: 100%;
 	margin-top: 1rem;
-	color: #ec3f30;
-	border: 1px solid #ec3f30;
+	color: #fdffff;
+	background: #ec3f30;
 }
 
 #main #mc_embed_signup input[type="submit"]:hover {
-	color: #fdffff;
-	background: #ec3f30;
-	border: 1px solid #ec3f30;
+	background: #111;
 }
 
 /*--------------------------------------------------------------
@@ -1178,7 +1193,9 @@ p:empty {
     border-bottom: 1rem solid #111;
 }
 
-.border-page h1 {
+.border-page > h1,
+.border-page h1.entry-title,
+.border-page h2.entry-title {
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	text-align: center;
@@ -1190,17 +1207,60 @@ p:empty {
 	margin-top: 0;
 }
 
+.border-page h1 a,
+.border-page h2.entry-title a {
+	color: #fdffff;	
+}
+
+.no-border h1.entry-title,
+.no-border h1.page-title {
+	display: none;
+	padding: none;
+	margin: none;
+}
+
 .entry-content {
 	padding: 0 2rem 2rem 2rem;
 }
 
-.entry-content--no-header {
+.single .entry-content {
+	margin: 0;
+}
+
+.entry-meta,
+.entry-content--no-header,
+.post-navigation {
 	padding: 2rem;
 }
 
 .entry-footer {
 	padding: 0 2rem;
 	text-align: right;
+}
+
+.nav-links {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav-links a,
+.nav-links a:visited {
+	background: #ec3f30;
+	color: #fdffff;
+	text-transform: uppercase;
+	font-family: "Francois One", sans-serif;
+	padding: .5rem;
+	letter-spacing: 2px;
+}
+
+.nav-links a:hover,
+.nav-links a:active, 
+.nav-links a:focus {
+	background: #111;
+}
+
+button.alm-load-more-btn {
+	background-color: #ec3f30 !important; 
 }
 
 @media (min-width: 900px) {
@@ -1214,7 +1274,6 @@ p:empty {
 	    margin: 2rem auto 3rem auto;
     	border: 1rem solid #111;
 	}
-
 
 }
 
@@ -1267,6 +1326,7 @@ p:empty {
 		width: 50%;
 		line-height: 0;
 		display: inline-block;
+		background: #111;
 	}
 
 	.event-img a {
@@ -1277,6 +1337,8 @@ p:empty {
 	.event-img img {
 		line-height: 0;
 		display: block;
+		vertical-align: middle;
+		margin: 0;
 	}
 
 	.event-content {
